@@ -1,9 +1,22 @@
 export const elements = {
-  searchInput: getElement('.search__field'),
-  searchForm: getElement('.search'),
-  resultsList: getElement('.results__list'),
+  searchInput: document.querySelector('.search__field'),
+  searchForm: document.querySelector('.search'),
+  resultsList: document.querySelector('.results__list'),
+  results: document.querySelector('.results'),
 };
 
-function getElement(selector) {
-  return document.querySelector(selector);
-}
+export const renderLoader = (parent) => {
+  const spinnerHTML = `
+        <div class="loader">
+            <svg> 
+                <use href="img/icons.svg#icon-cw""></use>
+            </svg>
+        </div>
+    `;
+
+  parent.insertAdjacentHTML('afterbegin', spinnerHTML);
+};
+
+export const removeLoader = (parent) => {
+  parent.removeChild(document.querySelector('.loader'));
+};

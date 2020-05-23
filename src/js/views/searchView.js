@@ -2,6 +2,14 @@ import { elements } from './base';
 
 export const getInput = () => elements.searchInput.value;
 
+export const clearInput = () => {
+  elements.searchInput.value = '';
+};
+
+export function clearList() {
+  elements.resultsList.innerHTML = '';
+}
+
 function renderRecipe(recipe) {
   const recipeHtml = `<li>
     <a class="results__link" href="${recipe.recipe_id}">
@@ -19,7 +27,5 @@ function renderRecipe(recipe) {
 }
 
 export const renderResults = (results) => {
-  results.forEach((recipe) => {
-    renderRecipe(recipe);
-  });
+  results.forEach(renderRecipe);
 };

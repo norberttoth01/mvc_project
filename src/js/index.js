@@ -1,5 +1,5 @@
 import { Search } from './models/Search';
-import { elements } from './views/base';
+import { elements, renderLoader, removeLoader } from './views/base';
 import * as searchView from './views/searchView';
 
 const state = {};
@@ -7,15 +7,22 @@ const state = {};
 const searchController = async () => {
   const query = searchView.getInput();
 
-  const search = new Search(query);
-  state.search = search;
+  if (query) {
+    searchView.clearList();
+    renderLoader(elements.results);
 
-  await state.search.getResults();
+    const search = new Search(query);
+    state.search = search;
 
-  searchView.renderResults(state.search.result);
+    await state.search.getResults();
+    searchView.clearInput();
+    removeLoader(elements.results);
+    searchView.renderResults(state.search.result);
+  } else {
+    alert('Type a food name');
+  }
 };
 
-console.log(elements.searchForm);
 elements.searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
   searchController();
