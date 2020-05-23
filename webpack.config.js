@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/boundle.js',
   },
+  devtool: 'source-map',
   devServer: {
     contentBase: './dist',
   },

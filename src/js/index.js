@@ -9,6 +9,7 @@ const searchController = async () => {
 
   if (query) {
     searchView.clearList();
+    searchView.removBtns();
     renderLoader(elements.results);
 
     const search = new Search(query);
@@ -27,3 +28,16 @@ elements.searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
   searchController();
 });
+
+elements.pagination.addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (btn) {
+    paginationHandler(+btn.dataset.goto);
+  }
+});
+
+const paginationHandler = (pageToGo) => {
+  searchView.clearList();
+  searchView.removBtns();
+  searchView.renderResults(state.search.result, pageToGo);
+};
