@@ -12,7 +12,7 @@ export function clearList() {
 
 function renderRecipe(recipe) {
   const recipeHtml = `<li>
-    <a class="results__link" href="${recipe.recipe_id}">
+    <a class="results__link" href="#${recipe.recipe_id}">
         <figure class="results__fig">
             <img src="${recipe.image_url}" alt="Test">
         </figure>
@@ -29,12 +29,12 @@ function renderRecipe(recipe) {
 const createBtn = (type, page) => {
   const btnHTML = `
         <button class="btn-inline results__btn--${type}" data-goto="${page}">
+        <span>Page  ${page}</span>
                     <svg class="search__icon">
                         <use href="img/icons.svg#icon-triangle-${
                           type === 'prev' ? 'left' : 'right'
                         }"></use>
                     </svg>
-                    <span>Page  ${page}</span>
             </button>`;
   return btnHTML;
 };

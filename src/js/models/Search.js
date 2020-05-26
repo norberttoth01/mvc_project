@@ -12,7 +12,7 @@ export class Search {
       );
       this.result = res.data.recipes;
     } catch (error) {
-      alert(error);
+      throw 'invalid food name';
     }
   }
 }
