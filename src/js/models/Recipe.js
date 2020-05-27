@@ -59,9 +59,10 @@ export default class Recipe {
         const arrCount = arrIng.slice(0, unitIndex);
         let count;
         if (arrCount.length === 1) {
-          count = eval(arrIng[0].replace('-', '+'));
+          count = Math.round(eval(arrIng[0].replace('-', '+')) * 10) / 10;
         } else {
-          count = eval(arrIng.slice(0, unitIndex).join('+')); // eval() használata egyáltalán nem ajánlott, ez csak egy példa a működésére
+          count =
+            Math.round(eval(arrIng.slice(0, unitIndex).join('+')) * 10) / 10; // eval() használata egyáltalán nem ajánlott, ez csak egy példa a működésére
         }
 
         objIng = {
@@ -71,7 +72,7 @@ export default class Recipe {
         };
       } else if (parseInt(arrIng[0])) {
         objIng = {
-          count: parseInt(arrIng[0]),
+          count: Math.round(parseInt(arrIng[0]) * 100) / 100,
           unit: '',
           ingredient: arrIng.slice(1).join(' '),
         };

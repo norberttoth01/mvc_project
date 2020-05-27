@@ -10,6 +10,15 @@ export function clearList() {
   elements.resultsList.innerHTML = '';
 }
 
+export const highlightSelected = (id) => {
+  const prevActiveElement = document.querySelector('.results__link--active');
+  if (prevActiveElement)
+    prevActiveElement.classList.remove('results__link--active');
+  document
+    .querySelector(`a[href="#${id}"]`)
+    .classList.add('results__link--active');
+};
+
 function renderRecipe(recipe) {
   const recipeHtml = `<li>
     <a class="results__link" href="#${recipe.recipe_id}">

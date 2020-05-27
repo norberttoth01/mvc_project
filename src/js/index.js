@@ -36,20 +36,19 @@ const recipeController = async () => {
   const id = window.location.hash.replace('#', '');
 
   if (id) {
-    state.recipe = new Recipe(id);
     recipeView.removeRecipe();
     renderLoader(elements.recipe);
+    state.recipe = new Recipe(id);
+    if (state.search) searchView.highlightSelected(id);
 
     try {
       await state.recipe.getRecipe();
       state.recipe.parseIngredients();
       state.recipe.calcTime();
       state.recipe.calcServings();
-      console.log(state.recipe);
       removeLoader(elements.recipe);
       recipeView.renderRecipe(state.recipe);
     } catch (err) {
-      removeLoader(elements.recipe);
       console.log(err);
       alert(err);
     }
