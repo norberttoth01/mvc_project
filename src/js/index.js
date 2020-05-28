@@ -76,3 +76,12 @@ const paginationHandler = (pageToGo) => {
 ['hashchange', 'load'].forEach((event) => {
   window.addEventListener(event, recipeController);
 });
+
+elements.recipe.addEventListener('click', (e) => {
+  if (e.target.matches('.btn-decrease, .btn-decrease *')) {
+    if (state.recipe.servings > 1) state.recipe.updateServings('dec');
+  } else if (e.target.matches('.btn-increase, .btn-increase *')) {
+    state.recipe.updateServings('inc');
+  }
+  recipeView.updateIngredients(state.recipe);
+});
