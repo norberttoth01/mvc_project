@@ -5,6 +5,7 @@ export const elements = {
   results: document.querySelector('.results'),
   pagination: document.querySelector('.results__pages'),
   recipe: document.querySelector('.recipe'),
+  shoppingList: document.querySelector('.shopping__list'),
 };
 
 export const renderLoader = (parent) => {
