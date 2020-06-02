@@ -14,9 +14,10 @@ export const highlightSelected = (id) => {
   const prevActiveElement = document.querySelector('.results__link--active');
   if (prevActiveElement)
     prevActiveElement.classList.remove('results__link--active');
-  document
-    .querySelector(`a[href="#${id}"]`)
-    .classList.add('results__link--active');
+  const newActiveElement = document.querySelector(
+    `.results__link[href="#${id}"]`
+  );
+  if (newActiveElement) newActiveElement.classList.add('results__link--active');
 };
 
 function renderRecipe(recipe) {
